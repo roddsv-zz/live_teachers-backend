@@ -21,17 +21,19 @@ public class Teacher implements Serializable{
 	private String subject;
 	private String description;
 	private Double hourPrice;
+	private String imageUri;
 	
 	public Teacher() {
 	}
 
-	public Teacher(Long id, String name, String subject, String description, Double hourPrice) {
+	public Teacher(Long id, String name, String subject, String description, Double hourPrice, String imageUri) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.subject = subject;
 		this.description = description;
 		this.hourPrice = hourPrice;
+		this.imageUri = imageUri;
 	}
 
 	public Long getId() {
@@ -72,6 +74,16 @@ public class Teacher implements Serializable{
 
 	public void setHourPrice(Double hourPrice) {
 		this.hourPrice = hourPrice;
+	}
+	
+	
+
+	public String getImageUri() {
+		return imageUri;
+	}
+
+	public void setImageUri(String imageUri) {
+		this.imageUri = imageUri;
 	}
 
 	@Override
