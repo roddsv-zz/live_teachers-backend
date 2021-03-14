@@ -2,6 +2,9 @@ package com.rodrigo.liveteachers_back.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.rodrigo.liveteachers_back.entities.Class;
 
@@ -13,6 +16,9 @@ public class ClassDTO implements Serializable{
 	private String subject;
 	private Double numberOfHours;
 	private Instant moment;
+	
+	private List<TeacherDTO> teachers = new ArrayList<>();
+	private List<StudentDTO> students = new ArrayList<>();
 	
 	public ClassDTO() {
 		
@@ -30,6 +36,8 @@ public class ClassDTO implements Serializable{
 		subject = entity.getSubject();
 		numberOfHours = entity.getNumberOfHours();
 		moment = entity.getMoment();
+		teachers = entity.getTeachers().stream().map(x -> new TeacherDTO(x)).collect(Collectors.toList());
+		students = entity.getStudents().stream().map(x -> new StudentDTO(x)).collect(Collectors.toList());
 	}
 
 	public Long getId() {
@@ -62,5 +70,13 @@ public class ClassDTO implements Serializable{
 
 	public void setMoment(Instant moment) {
 		this.moment = moment;
+	}
+
+	public List<TeacherDTO> getTeachers() {
+		return teachers;
+	}
+
+	public List<StudentDTO> getStudents() {
+		return students;
 	}
 }
